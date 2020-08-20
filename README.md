@@ -2,7 +2,7 @@
 To build a travel application that contains a form which obtains information on user's upcoming trip - destination and departure date. With the help of external APIs - Geonames, Weatherbit and Pixabay, the app then displays weather and an image of the location on that given date.
 
 ## Building
-To build I followed the following steps:
+To get the project up and running I followed these steps:
 
 - got my basic project setup and functioning in Visual Studio Code (HTML, installed SASS, wrote styles and set up a local server)
 - installed npm packages
