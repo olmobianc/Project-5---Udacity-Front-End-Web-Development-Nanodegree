@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Journal</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <!--Load styles-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="main-container">
+            <h3 class="holder title headline">Weather Journal App</h3>
+            <p class="white-text">Welcome to my first Web App! Please enter in the forms below the zipcode of your city (USA only) and how you are feeling today.
+            <br>
+            You will see in the red box, the current date, the temperature(F) and your response!
+            <br>
+            Everything handled through Web API and user data to dynamically update the UI for a Weather-Journal App.
+            </p>
+        </div>
+
+        <div class="holder zip">
+            <label for="zip">Enter Zipcode here</label>
+            <input type="text" id="zip" placeholder="enter zip code here">
+            <!--<canvas id="icon1" width="128" height="128"></canvas>-->
+        </div>
+
+        <div class="holder feel">
+            <label for="feelings">How are you feeling today?</label>
+            <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
+            <button id="generate" type="submit"> Generate </button>
+        </div>
+
+        <div class="holder entry">
+            <div class="title">Most Recent Entry</div>
+            <div id="entryHolder">
+                <div class="answer" id="date"></div>
+                <div class="answer" id="temp"></div>
+                <div class="answer" id="content"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--Load scipts-->
+    <script src="app.js" type="text/javascript"></script>
+
+</body>
+
+</html>
