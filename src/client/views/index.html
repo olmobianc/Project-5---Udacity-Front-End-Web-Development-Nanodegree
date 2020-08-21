@@ -29,28 +29,37 @@
                     And Voilà! Here you have your trip ready and scheduled!
                 </p>
             </div>
+            
+            <div class="container">
 
-            <div id="adding-trip" class="destination-and-date-box">
+                <!--DEST AND DATE BOX-->
+                <div id="adding-trip" class="destination-and-date-box">
 
-                <strong>Destination:</strong>
-                <input id="destination" type="text" name="destinations" placeholder="Desired Location"/>
+                    <strong>Destination:</strong>
+                    <input id="destination" type="text" name="destinations" placeholder="Desired Location"/>
 
-                <br/>
-                <br/>
-    
-                <strong>Starting Date:</strong>
-                <input id="date" type="date" name="date"/>
+                    <br/>
+                    <br/>
+        
+                    <strong>Starting Date:</strong>
+                    <input id="date" type="date" name="date"/>
 
-            </div>   
+                </div>
+
+                <!--RESULT BOX-->
+                <div id="result-box">
+                    <div class="text-center"><strong>Saved trips</strong></div>
+                    
+                    <div id="results">
+                    </div>
+
+                </div>
+                
+            </div>
 
             <button id="button-trip">Add Trip</button>
 
-            <section id="result-box">
-                <div class="text-center"><strong>Saved trips</strong></div>
-                
-                <div id="results">
-                </div>
-            </section>
+            
 
         </main>    
 

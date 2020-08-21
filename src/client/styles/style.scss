@@ -26,9 +26,23 @@ body{
 }
 
 /*MAIN*/
+.container {
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    grid-template-rows: minmax(30px, auto);
+    grid-gap: 30px;
+    grid-template-areas:
+    "left"
+    "right";
+}
+
+.destination-and-date-box {
+    grid-area: left;
+    margin-bottom: 30px;
+}
 
 .explanation {
-    padding: 10px 50px 80px;
+    padding: 40px 50px 100px;
     background-color: rgba(68, 63, 63, 0.205);
 }
 
@@ -38,13 +52,12 @@ body{
     margin-top: 40px;
 }
 
-.destination-and-date-box {
-    margin-bottom: 30px;
-    display: inline-block;
-}
-
 .bold {
     font-weight: 600;
+}
+
+.text-center {
+    text-align: center;
 }
 
 #button-trip {
@@ -59,7 +72,6 @@ body{
 
 /*RESULT BOX*/
 #result-box {
-    display: inline-block;
 }
 
 /*FOOTER*/
