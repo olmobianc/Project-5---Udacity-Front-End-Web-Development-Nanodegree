@@ -1,7 +1,9 @@
 body{
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
 }
 
+/*HEADER*/
 .navbar {
     background-color: slategray
 }
@@ -20,15 +22,22 @@ body{
 .no-link {
     text-decoration: none;
     font-size: 18px;
+    color: beige;
 }
 
+/*MAIN*/
+
 .explanation {
-    padding: 10px 50px 40px;
+    padding: 10px 50px 60px;
     background-color: rgba(68, 63, 63, 0.205);
 }
 
 .paragraph {
     line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.destination-and-date-box {
     margin-bottom: 30px;
 }
 
@@ -42,5 +51,45 @@ body{
     color: #fff;
     font-size: 13px;
     border: none;
-    padding: 5px;
+    padding: 5px 15px;
+}
+
+/*FOOTER*/
+#footer-box {
+    background: #444;
+    grid-area: ft;
+    color: white;
+}
+
+.footer-title {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.social-list {
+    display: flex;
+    justify-content: center;
+    color: white;
+    list-style-type: none;
+}
+
+.social-element {
+    padding: 20px 50px 60px;
+}
+
+.social-link {
+    text-decoration: none;
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    background: #282828;
+    margin: 0;
+    padding: 15px;
 }

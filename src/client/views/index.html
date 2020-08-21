@@ -8,46 +8,59 @@
     </head>
 
     <body>
+
+        <!--HEADER-->
         <header class="navbar">
             <h2 class="inline">Let's organize your trip!</h2>
             <ul class="inline no-dec">
-                <li><a href="#adding-trip" class="bold no-link">Add a trip</a></li>
+                <li><a href="#adding-trip" class="bold no-link">Plan a new trip</a></li>
             </ul>
         </header>
 
+        <!--MAIN-->
         <main class="explanation">
             <div>
-                <p class="paragraph">Hi there! I have built a web app that allows users to plan their trips!
-                <br>
-                It's very simple to use. The first thing to do is to insert a favourite city where you want to go. Secondly you need
-                to insert the preferred starting date. And Voilà! Here you have your trip ready and scheduled!
+                <p class="paragraph">
+                    Hi there! I have built a web app that allows users to plan their trips!
+                    <br>
+                    It's very simple to use. The first thing to do is to insert a favourite city where you want to go. Secondly you need
+                    to insert the preferred starting date.
+                    <br/>
+                    And Voilà! Here you have your trip ready and scheduled!
                 </p>
             </div>
 
-            <div>
-                <div class="destination-and-date-box">
+            <div class="destination-and-date-box">
 
-                    <strong>Destination:</strong>
-                    <input id="destination" type="text" name="destinations" placeholder="Desired Destination"/>
+                <strong>Destination:</strong>
+                <input id="destination" type="text" name="destinations" placeholder="Desired Location"/>
 
-                    <br/>
-                    <br/>
+                <br/>
+                <br/>
     
-                    <strong>Starting Date:</strong>
-                    <input id="date" type="date" name="date"/>
+                <strong>Starting Date:</strong>
+                <input id="date" type="date" name="date"/>
 
-                </div>   
-            </div>
+            </div>   
 
             <button id="button-trip">Add Trip</button>
 
         </main>    
 
-        
-
-        <section>
-
-        </section>
+         <!--FOOTER-->
+         <footer id="footer-box">
+            <div class="footer-title">Stay Connected</div>
+            <div class="social-container">
+                <ul class="social-list">
+                    <a class="social-link" href=""><li class="social-element">Twitter</li></a>
+                    <a class="social-link" href=""><li class="social-element">Facebbok</li></a>
+                    <a class="social-link" href=""><li class="social-element">Linkedln</li></a>
+                </ul>
+            </div>
+            <div class="copyright-container">
+                <p class="copyright">Developed by Olmo Biancardi</p>
+            </div>
+        </footer>
 
     </body>
 
