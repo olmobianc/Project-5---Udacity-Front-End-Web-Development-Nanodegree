@@ -28,17 +28,19 @@ body{
 /*MAIN*/
 
 .explanation {
-    padding: 10px 50px 60px;
+    padding: 10px 50px 80px;
     background-color: rgba(68, 63, 63, 0.205);
 }
 
 .paragraph {
     line-height: 1.8;
     margin-bottom: 50px;
+    margin-top: 40px;
 }
 
 .destination-and-date-box {
     margin-bottom: 30px;
+    display: inline-block;
 }
 
 .bold {
@@ -52,6 +54,12 @@ body{
     font-size: 13px;
     border: none;
     padding: 5px 15px;
+    cursor: pointer;
+}
+
+/*RESULT BOX*/
+#result-box {
+    display: inline-block;
 }
 
 /*FOOTER*/
