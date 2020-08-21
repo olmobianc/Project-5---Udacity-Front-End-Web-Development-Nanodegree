@@ -8,13 +8,47 @@
     </head>
 
     <body>
-        <header>
+        <header class="navbar">
             <h2 class="inline">Let's organize your trip!</h2>
-            <ul class="inline">
-                <li><a href=""></a>Add a trip</li>
+            <ul class="inline no-dec">
+                <li><a href="#adding-trip" class="bold no-link">Add a trip</a></li>
             </ul>
-            
         </header>
+
+        <main class="explanation">
+            <div>
+                <p class="paragraph">Hi there! I have built a web app that allows users to plan their trips!
+                <br>
+                It's very simple to use. The first thing to do is to insert a favourite city where you want to go. Secondly you need
+                to insert the preferred starting date. And Voilà! Here you have your trip ready and scheduled!
+                </p>
+            </div>
+
+            <div>
+                <div class="destination-and-date-box">
+
+                    <strong>Destination:</strong>
+                    <input id="destination" type="text" name="destinations" placeholder="Desired Destination"/>
+
+                    <br/>
+                    <br/>
+    
+                    <strong>Starting Date:</strong>
+                    <input id="date" type="date" name="date"/>
+
+                </div>   
+            </div>
+
+            <button id="button-trip">Add Trip</button>
+
+        </main>    
+
+        
+
+        <section>
+
+        </section>
+
     </body>
 
 </html>

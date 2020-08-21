@@ -2,6 +2,45 @@ body{
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.navbar {
+    background-color: slategray
+}
+
 .inline {
     display: inline-block;
+    padding: 20px;
+    margin: 0 30px;
+}
+
+.no-dec {
+    float: right;
+    list-style: none;
+}
+
+.no-link {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.explanation {
+    padding: 10px 50px 40px;
+    background-color: rgba(68, 63, 63, 0.205);
+}
+
+.paragraph {
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+#button-trip {
+    border-radius: 20px;
+    background-color: tomato;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    padding: 5px;
 }
