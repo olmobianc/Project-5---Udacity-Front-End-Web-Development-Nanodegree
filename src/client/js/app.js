@@ -10,14 +10,13 @@ const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
 // Personal API Key for Pixabay
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
+
 
 // Event listener to add function to existing HTML DOM element
-addTripButton.addEventListener('click', performAction);
+addTripButton.addEventListener('click', addTrip);
 
 /* Function called by event listener to Add a Trip */
-export function performAction(e) {
+export function addTrip(e) {
     e.preventDefault();
     //get inputs from user
     const newDestination = goingTo.value;
