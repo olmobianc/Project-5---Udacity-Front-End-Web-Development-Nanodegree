@@ -9,46 +9,41 @@ const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('button-trip').addEventListener('click', performAction);
 
 /* Function called by event listener */
 function performAction(e) {
     e.preventDefault();
 
     //get inputs from user
-    const newZip = document.getElementById("zip").value;
+    const newDestination = document.getElementById("destination").value;
     const content = document.getElementById('feelings').value;
 
     //check if user values inserted are incorrect
-    if (newZip.length === 0 || content.length === 0) {
+    if (newDestination.length === 0 || content.length === 0) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
 
     //main function call
-    getWeatherData(baseURL, newZip, apiKey)
+    getLocation(baseURL, newDestination, apiKey)
         //chaining promises with then()
         .then(function(data) {
             //add user data to POST request
             postData('/add', { 
-                temp: data.main.temp, //adding main because we are taking the main temperature
-                date: newDate, 
-                content: content
+                latitude: data.latitude,
+                longitude: data.longitude, 
+                country: newDestination
             });
         }).then(function() {
             //update dinamically UI
             updateUI()
-        })    
-        /*TODO IN THE FUTURE    
-        ).then(
-            //update dinamically Weather Icon
-            updateIcon()
-        )*/
+        })
 }
 
 /* Function to GET Web API Data*/
-const getWeatherData = async(baseURL, zip, apiKey) => {
-    const res = await fetch(baseURL + zip + apiKey);
+const getLocation = async(baseURL, newDestination, apiKey) => {
+    const res = await fetch(baseURL + newDestination + apiKey);
     try {
         const data = await res.json(); //convert the data object into json file
         console.log(data);
@@ -69,9 +64,9 @@ const postData = async (url = '', data = {}) => {
         },
         // body data type must match "Content-Type" header
         body: JSON.stringify({
-            temp: data.temp,
-            date: data.date,
-            content: data.content }),  
+            lat: data.lat,
+            long: data.long,
+            country: data.country }),  
     })
   
     try {
@@ -86,6 +81,7 @@ const postData = async (url = '', data = {}) => {
 
 /* Function to dinamically update UI */
 const updateUI = async () => {
+    document.getElementById("result-box").removeAttribute("class");
     const request = await fetch('/all');
     try {
         const allData = await request.json();

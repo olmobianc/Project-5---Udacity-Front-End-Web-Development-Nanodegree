@@ -11,7 +11,7 @@
 
         <!--HEADER-->
         <header class="navbar">
-            <h2 class="inline">Let's organize your trip!</h2>
+            <h2 class="inline">Let's organize your next adventure!</h2>
             <ul class="inline no-dec">
                 <li><a href="#adding-trip" class="bold no-link">Plan a new trip</a></li>
             </ul>
@@ -24,7 +24,7 @@
                     Hi there! I have built a web app that allows users to plan their trips!
                     <br>
                     It's very simple to use. The first thing to do is to insert a favourite city where you want to go. Secondly you need
-                    to insert the preferred starting date.
+                    to insert the expected starting date.
                     <br/>
                     And Voilà! Here you have your trip ready and scheduled!
                 </p>
@@ -36,30 +36,36 @@
                 <div id="adding-trip" class="destination-and-date-box">
 
                     <strong>Destination:</strong>
-                    <input id="destination" type="text" name="destinations" placeholder="Desired Location"/>
-
+                    <input id="destination" type="text" name="destination" placeholder="Desired Location"/>
                     <br/>
                     <br/>
-        
                     <strong>Starting Date:</strong>
                     <input id="date" type="date" name="date"/>
+
+                    <div class="button-trip-box">
+                        <button id="button-trip">Add Trip</button>
+                    </div>
 
                 </div>
 
                 <!--RESULT BOX-->
-                <div id="result-box">
-                    <div class="text-center"><strong>Saved trips</strong></div>
+                <div id="result-box" class="invisible">
+                    <div class="text-center saved-trips-box"><strong>Saved trips</strong></div>
                     
                     <div id="results">
+                        <h3 class="city text-result">You are going to: <span id="city"></span></h3>
+                        <h3 class="date text-result">Departing on: <span id="date">DD/MM/YYYY</span></h3>
+                        <h3 class="days_left text-result">The trip is: <span id="days">NUM</span> days away</h3>
+                        <h3 class="weather text-result">Weather is going to be: <span id="temp">200C</span> &#176; F, 
+                            <span id="summary"></span>.</h2>
+
+                        <a class="button-save" id="save" href="#">Print</a>
+                        <a class="button-delete" id="delete" href="#">Delete</a>    
                     </div>
 
                 </div>
                 
             </div>
-
-            <button id="button-trip">Add Trip</button>
-
-            
 
         </main>    
 

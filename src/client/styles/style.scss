@@ -48,6 +48,7 @@ body{
 
 .paragraph {
     line-height: 1.8;
+    font-size: 18px;
     margin-bottom: 50px;
     margin-top: 40px;
 }
@@ -60,9 +61,13 @@ body{
     text-align: center;
 }
 
+.button-trip-box {
+    margin-top: 35px;
+}
+
 #button-trip {
     border-radius: 20px;
-    background-color: tomato;
+    background-color: teal;
     color: #fff;
     font-size: 13px;
     border: none;
@@ -71,7 +76,41 @@ body{
 }
 
 /*RESULT BOX*/
+.invisible {
+    display: none;
+}
+
 #result-box {
+    border: 1px solid black;
+    padding: 0 40px 40px;
+}
+
+.saved-trips-box {
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+.button-save {
+    border-radius: 20px;
+    background-color: teal;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-delete {
+    border-radius: 20px;
+    background-color: tomato;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /*FOOTER*/
@@ -83,7 +122,7 @@ body{
 
 .footer-title {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 40px;
     font-size: 24px;
     letter-spacing: 2px;
 }
