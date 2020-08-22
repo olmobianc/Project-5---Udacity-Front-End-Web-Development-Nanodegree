@@ -5,11 +5,14 @@ const printButton = document.getElementById("save");
 const deleteButton = document.getElementById("delete");
 const goingTo = document.querySelector('input[name="destination"]');
 const depDate = document.querySelector('input[name="date"]');
+// Personal Data for Geonames
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
+const username = "travelling";
 // Personal API Key for WeatherBit
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
+
+
 // Personal API Key for Pixabay
+
 
 
 // Event listener to add function to existing HTML DOM element
@@ -26,34 +29,33 @@ export function addTrip(e) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
+
     //main function call
-    getLocation(baseURL, newDestination, apiKey)
+    getLocation(geoNamesURL, newDestination, username)
         //chaining promises with then()
-        .then(function(data) {
-            //add user data to POST request
-            postData('/add', { 
-                latitude: data.latitude,
-                longitude: data.longitude, 
-                country: newDestination
-            });
-        }).then(function() {
+        .then((cityData) => {
+            const cityLat = cityData.geonames[0].lat;
+            const cityLong = cityData.geonames[0].lng;
+            const country = cityData.geonames[0].countryName;
+            //const weatherData = getWeather(cityLat, cityLong, country, timestamp);
+            //return weatherData;
+        }).then((weatherData) => {
             //update dinamically UI
-            updateUI()
+            updateUI();
         })
 }
 
-/* Function to GET Web API Data*/
-const getLocation = async(baseURL, newDestination, apiKey) => {
-    const res = await fetch(baseURL + newDestination + apiKey);
+/* Function to GET Web API Location Data*/
+export const getLocation = async (geoNamesURL, newDestination, username) => {
+    // res equals to the result of fetch function
+    const res = await fetch(geoNamesURL + newDestination + "username=" + username);
     try {
-        const data = await res.json(); //convert the data object into json file
-        console.log(data);
-        return data;
-
+      const cityData = await res.json();
+      return cityData;
     } catch (error) {
-        console.log("There was an error with your GET request", error);
+        console.log("There was an error with retrieving data from the Location", error);
     }
-}
+};
 
 /* Function to POST data */
 const postData = async (url = '', data = {}) => {
