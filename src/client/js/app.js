@@ -1,30 +1,32 @@
 /* Global Variables */
-
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-// Personal API Key for OpenWeatherMap API
+const result = document.getElementById("result-box");
+const addTripButton = document.getElementById("button-trip");
+const printButton = document.getElementById("save");
+const deleteButton = document.getElementById("delete");
+const goingTo = document.querySelector('input[name="destination"]');
+const depDate = document.querySelector('input[name="date"]');
+const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
+// Personal API Key for WeatherBit
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
+const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
+// Personal API Key for Pixabay
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&APPID=515a96d2f824b84902e9acef36d94c63';
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('button-trip').addEventListener('click', performAction);
+addTripButton.addEventListener('click', performAction);
 
-/* Function called by event listener */
-function performAction(e) {
+/* Function called by event listener to Add a Trip */
+export function performAction(e) {
     e.preventDefault();
-
     //get inputs from user
-    const newDestination = document.getElementById("destination").value;
-    const content = document.getElementById('feelings').value;
-
+    const newDestination = goingTo.value;
+    const departureDate = depDate.value;
     //check if user values inserted are incorrect
-    if (newDestination.length === 0 || content.length === 0) {
+    if (newDestination.length === 0 || departureDate === 0) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
-
     //main function call
     getLocation(baseURL, newDestination, apiKey)
         //chaining promises with then()
@@ -81,7 +83,6 @@ const postData = async (url = '', data = {}) => {
 
 /* Function to dinamically update UI */
 const updateUI = async () => {
-    document.getElementById("result-box").removeAttribute("class");
     const request = await fetch('/all');
     try {
         const allData = await request.json();
