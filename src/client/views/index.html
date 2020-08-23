@@ -39,8 +39,13 @@
                     <input id="destination" type="text" name="destination" placeholder="Desired Location"/>
                     <br/>
                     <br/>
-                    <strong>Starting Date:</strong>
-                    <input id="date" type="date" name="date"/>
+                    <div>
+                        <strong>Starting Date:</strong>
+                        <input id="start-date" type="date" name="start-date"/>
+                    </div>
+                    <br/>
+                    <strong>Ending Date:</strong>
+                    <input id="end-date" type="date" name="end-date"/>
 
                     <div class="button-trip-box">
                         <button id="button-trip">Add Trip</button>
@@ -49,15 +54,15 @@
                 </div>
 
                 <!--RESULT BOX-->
-                <div id="result-box" class="invisible">
+                <div id="result-box" class="hidden">
                     <div class="text-center saved-trips-box"><strong>Saved trips</strong></div>
                     
                     <div id="results">
                         <h3 class="city text-result">You are going to: <span id="city"></span></h3>
-                        <h3 class="date text-result">Departing on: <span id="date">DD/MM/YYYY</span></h3>
-                        <h3 class="days_left text-result">The trip is: <span id="days">NUM</span> days away</h3>
-                        <h3 class="weather text-result">Weather is going to be: <span id="temp">200C</span> &#176; F, 
-                            <span id="summary"></span>.</h2>
+                        <h3 class="date text-result">Departing on: <span id="date"></span></h3>
+                        <h3 class="days_left text-result">The trip is: <span id="remaining-days"></span> days away</h3>
+                        <h3 class="duration text-result">The trip is long: <span id="trip-duration"></span> days </h3>
+                        <h3 class="weather text-result">Weather is going to be: <span id="temp"></span> &#176; <span id="summary"></span>.</h2>
 
                         <a class="button-save" id="save" href="#">Print</a>
                         <a class="button-delete" id="delete" href="#">Delete</a>    

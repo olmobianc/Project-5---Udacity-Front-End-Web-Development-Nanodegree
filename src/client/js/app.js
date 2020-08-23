@@ -4,7 +4,11 @@ const addTripButton = document.getElementById("button-trip");
 const printButton = document.getElementById("save");
 const deleteButton = document.getElementById("delete");
 const goingTo = document.querySelector('input[name="destination"]');
-const depDate = document.querySelector('input[name="date"]');
+const depDate = document.querySelector('input[name="start-date"]');
+const endDate = document.querySelector('input[name="end-date"]');
+const remainingDays = document.getElementById("remaining-days");
+const tripLength = document.getElementById("trip-duration");
+const city = document.getElementById("city");
 // Personal Data for Geonames
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const username = "travelling";
@@ -24,8 +28,9 @@ export function addTrip(e) {
     //get inputs from user
     const newDestination = goingTo.value;
     const departureDate = depDate.value;
+    const endingDate = endDate.value;
     //check if user values inserted are incorrect
-    if (newDestination.length === 0 || departureDate === 0) {
+    if (newDestination.length === 0 || departureDate === 0 || endingDate === 0) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
@@ -40,15 +45,17 @@ export function addTrip(e) {
             //const weatherData = getWeather(cityLat, cityLong, country, timestamp);
             //return weatherData;
         }).then((weatherData) => {
+            
+        }).then(() => {
             //update dinamically UI
             updateUI();
-        })
+        });
 }
 
 /* Function to GET Web API Location Data*/
 export const getLocation = async (geoNamesURL, newDestination, username) => {
     // res equals to the result of fetch function
-    const res = await fetch(geoNamesURL + newDestination + "username=" + username);
+    const res = await fetch(geoNamesURL + newDestination + "&maxRows=10&" + "username=" + username);
     try {
       const cityData = await res.json();
       return cityData;
@@ -82,16 +89,28 @@ const postData = async (url = '', data = {}) => {
     }
 }
 
+// Function to get the length of the trip
+const getLengthOfTrip = () => {
+    const start = new Date(depDate.value);
+    const end = new Date(endDate.value);
+    const length = end.getTime() - start.getTime();
+    const lengthOfTrip = length / (1000 * 60 * 60 * 24);
+    return lengthOfTrip;
+}
+
+// Function to get the days remaning to the trip
+const getRemainingDays = () => {
+    const start = new Date(depDate.value);
+    const today = new Date();
+    const duration =  Math.floor(start - today);
+    const durationInDays = Math.floor(duration / (1000 * 60 * 60 * 24) + 1);
+    return durationInDays;
+}
+
 /* Function to dinamically update UI */
 const updateUI = async () => {
-    const request = await fetch('/all');
-    try {
-        const allData = await request.json();
-        document.getElementById('date').innerHTML = allData.date;
-        document.getElementById('temp').innerHTML = allData.temp;
-        document.getElementById('content').innerHTML = allData.content;
-  
-    } catch (error) {
-        console.log("There was an error updating the UI", error);
-    }
+    result.classList.remove("hidden");
+    city.innerHTML = goingTo.value;
+    remainingDays.innerHTML = getRemainingDays();
+    tripLength.innerHTML = getLengthOfTrip();
 }
