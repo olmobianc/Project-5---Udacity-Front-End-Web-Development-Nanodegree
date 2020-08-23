@@ -48,10 +48,10 @@ export function addTrip(e) {
             const weatherData = getWeather(cityLat, cityLong);
             return weatherData;
         }).then((weatherData) => {
-            const temp = weatherData.data[0].app_temp;
-            console.log(temp); //logging out the temperature
+            //const temp = weatherData.data[0].app_temp;
+            //console.log(temp); //logging out the temperature
             const userData = postData('http://localhost:8000/add', 
-            { newDestination, departureDate, endingDate, temp: weatherData.data[0].app_temp }); //stuff I want to Post
+            { newDestination, departureDate, endingDate, temp: weatherData }); //stuff I want to Post
             return userData;
         }).then((userData) => {
             updateUI(userData);
@@ -78,7 +78,7 @@ export const getWeather = async (cityLat, cityLong) => {
         const res = await fetch(`${weatherApiUrlDaily}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
         try {
             const weatherData = await res.json();
-            return weatherData;
+            return weatherData.data[0].app_temp;
         } catch (error) {
             console.log("There was an error with retrieving data from the Weather, error");
         }
@@ -87,7 +87,7 @@ export const getWeather = async (cityLat, cityLong) => {
         const res = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
         try {
             const weatherData = await res.json();
-            return weatherData;
+            return weatherData.data[0].temp;
         } catch (error) {
             console.log("There was an error with retrieving data from the Weather, error");
         }
