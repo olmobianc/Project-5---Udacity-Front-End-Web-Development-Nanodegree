@@ -40,12 +40,10 @@ app.get('/', function (req, res) {
 app.post('/add', addData);
 
 function addData(request, response) {
-    projectData.depCity = request.body.depCity;
-    projectData.arrCity = request.body.arrCity;
-    projectData.depDate = request.body.depDate;
+    projectData.city = request.body.city;
+    projectData.startDate = request.body.startDate;
+    projectData.endDate = request.body.endDate;
     projectData.temp = request.body.temp;
-    projectData.recap = request.body.recap;
-    projectData.daysLeft = request.body.daysLeft;
     response.send(projectData);
 }
   

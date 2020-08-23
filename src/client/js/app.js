@@ -17,7 +17,7 @@ const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const username = "travelling";
 // Personal API Key for WeatherBit
 const weatherApiUrl = "https://api.weatherbit.io/v2.0/current?";
-const weatherAPI = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
+const weatherAPIKey = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
 // Personal API Key for Pixabay
 
 
@@ -37,26 +37,27 @@ export function addTrip(e) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
-
-    //main function call
+    //MAIN function call
     getLocation(geoNamesURL, newDestination, username)
-        //chaining promises with then()
         .then((cityData) => {
             const cityLat = cityData.geonames[0].lat;
             const cityLong = cityData.geonames[0].lng;
             const country = cityData.geonames[0].countryName;
             console.log(cityLat, cityLong, country);
-            const weatherData = getWeather(cityLat, cityLong, country);
+            const weatherData = getWeather(cityLat, cityLong);
+            console.log(weatherData);
             return weatherData;
         }).then((weatherData) => {
-            
-        }).then(() => {
-            //update dinamically UI
-            updateUI();
+            const userData = postData('http://localhost:8000/add', 
+            { newDestination, departureDate, endingDate, temp: weatherData.data[0].temp });
+            console.log(userData);
+            return userData;
+        }).then((userData) => {
+            updateUI(userData);
         });
 }
 
-/* Function to GET Web API Location Data*/
+/* Function to GET Web API Location Data */
 export const getLocation = async (geoNamesURL, newDestination, username) => {
     // res equals to the result of fetch function
     const res = await fetch(geoNamesURL + newDestination + "&maxRows=10&" + "username=" + username);
@@ -68,9 +69,9 @@ export const getLocation = async (geoNamesURL, newDestination, username) => {
     }
 }
 
-/* Function to GET Web API Weather Data*/
-export const getWeather = async (cityLat, cityLong, country) => {
-    const req = await fetch(weatherApiUrl + "/" + weatherAPI + "/" + cityLat + "," + cityLong + "," + "?exclude=minutely,hourly,daily,flags");
+/* Function to GET Web API Weather Data */
+export const getWeather = async (cityLat, cityLong) => {
+    const req = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
     try {
         const weatherData = await req.json();
         return weatherData;
@@ -80,31 +81,30 @@ export const getWeather = async (cityLat, cityLong, country) => {
 }
 
 /* Function to POST data */
-const postData = async (url = '', data = {}) => {
+export const postData = async (url = '', data = {}) => {
     const response = await fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        method: "POST",
         credentials: "same-origin",
         headers: {
             "Content-Type": "application/json",
         },
-        // body data type must match "Content-Type" header
         body: JSON.stringify({
-            lat: data.lat,
-            long: data.long,
-            country: data.country }),  
-    })
-  
+            city: data.newDestination,
+            startDate: data.departureDate,
+            endDate: data.endingDate,
+            temp: data.temp
+        }),  
+    })  
     try {
-        const newData = await response.json();
-        console.log(newData);
-        return newData;
-
+        const userData = await response.json();
+        console.log(userData);
+        return userData;
     } catch (error) {
         console.log("There was an error with your POST request", error);
     }
 }
 
-// Function to get the length of the trip
+/* Function to get the length of the trip */
 const getLengthOfTrip = () => {
     const start = new Date(depDate.value);
     const end = new Date(endDate.value);
@@ -113,7 +113,7 @@ const getLengthOfTrip = () => {
     return lengthOfTrip;
 }
 
-// Function to get the days remaning to the trip
+/* Function to get the days remaning to the trip */
 const getRemainingDays = () => {
     const start = new Date(depDate.value);
     const today = new Date();
@@ -123,11 +123,17 @@ const getRemainingDays = () => {
 }
 
 /* Function to dinamically update UI */
-const updateUI = async () => {
-    result.classList.remove("hidden");
-    city.innerHTML = goingTo.value;
-    date.innerHTML = depDate.value
-    remainingDays.innerHTML = getRemainingDays();
-    tripLength.innerHTML = getLengthOfTrip();
-    weather.innerHTML = getWeather(cityLat, cityLong, country);
+const updateUI = async (userData) => {
+    try {
+        result.classList.remove("hidden");
+        city.innerHTML = userData.newDestination;
+        date.innerHTML = userData.startDate;
+        remainingDays.innerHTML = getRemainingDays();
+        tripLength.innerHTML = getLengthOfTrip();
+        weather.innerHTML = userData.temp;
+    }
+    catch {
+        console.log("error", error);
+    }
+    
 }
