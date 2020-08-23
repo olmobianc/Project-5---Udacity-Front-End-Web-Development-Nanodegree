@@ -43,16 +43,17 @@ export function addTrip(e) {
             const cityLat = cityData.geonames[0].lat;
             const cityLong = cityData.geonames[0].lng;
             const country = cityData.geonames[0].countryName;
-            console.log(cityLat, cityLong, country);
+            console.log(cityLat, cityLong, country); //logging out the city Lat, Long and Country
             const weatherData = getWeather(cityLat, cityLong);
-            console.log(weatherData);
             return weatherData;
         }).then((weatherData) => {
+            const temp = weatherData.data[0].app_temp;
+            console.log(temp); //logging out the temperature
             const userData = postData('http://localhost:8000/add', 
-            { newDestination, departureDate, endingDate, temp: weatherData.data[0].temp });
-            console.log(userData);
+            { newDestination, departureDate, endingDate, temp: weatherData.data[0].app_temp }); //stuff I want to Post
             return userData;
         }).then((userData) => {
+            console.log("esisto");
             updateUI(userData);
         });
 }
@@ -71,9 +72,9 @@ export const getLocation = async (geoNamesURL, newDestination, username) => {
 
 /* Function to GET Web API Weather Data */
 export const getWeather = async (cityLat, cityLong) => {
-    const req = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
+    const res = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
     try {
-        const weatherData = await req.json();
+        const weatherData = await res.json();
         return weatherData;
     } catch (error) {
         console.log("There was an error with retrieving data from the Weather, error");
@@ -126,7 +127,7 @@ const getRemainingDays = () => {
 const updateUI = async (userData) => {
     try {
         result.classList.remove("hidden");
-        city.innerHTML = userData.newDestination;
+        city.innerHTML = userData.city;
         date.innerHTML = userData.startDate;
         remainingDays.innerHTML = getRemainingDays();
         tripLength.innerHTML = getLengthOfTrip();
