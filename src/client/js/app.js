@@ -6,15 +6,18 @@ const deleteButton = document.getElementById("delete");
 const goingTo = document.querySelector('input[name="destination"]');
 const depDate = document.querySelector('input[name="start-date"]');
 const endDate = document.querySelector('input[name="end-date"]');
+//For updading UI
 const remainingDays = document.getElementById("remaining-days");
 const tripLength = document.getElementById("trip-duration");
 const city = document.getElementById("city");
+const date = document.getElementById("date");
+const weather = document.getElementById("temp");
 // Personal Data for Geonames
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const username = "travelling";
 // Personal API Key for WeatherBit
-
-
+const weatherApiUrl = "https://api.weatherbit.io/v2.0/current?";
+const weatherAPI = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
 // Personal API Key for Pixabay
 
 
@@ -30,7 +33,7 @@ export function addTrip(e) {
     const departureDate = depDate.value;
     const endingDate = endDate.value;
     //check if user values inserted are incorrect
-    if (newDestination.length === 0 || departureDate === 0 || endingDate === 0) {
+    if (newDestination.length === 0 || departureDate === 0 || endingDate === 0 || (endingDate - departureDate) < 0) {
         alert("Data is not inserted correctly.. Please try again");
         return;
     }
@@ -42,8 +45,9 @@ export function addTrip(e) {
             const cityLat = cityData.geonames[0].lat;
             const cityLong = cityData.geonames[0].lng;
             const country = cityData.geonames[0].countryName;
-            //const weatherData = getWeather(cityLat, cityLong, country, timestamp);
-            //return weatherData;
+            console.log(cityLat, cityLong, country);
+            const weatherData = getWeather(cityLat, cityLong, country);
+            return weatherData;
         }).then((weatherData) => {
             
         }).then(() => {
@@ -57,12 +61,23 @@ export const getLocation = async (geoNamesURL, newDestination, username) => {
     // res equals to the result of fetch function
     const res = await fetch(geoNamesURL + newDestination + "&maxRows=10&" + "username=" + username);
     try {
-      const cityData = await res.json();
-      return cityData;
+        const cityData = await res.json();
+        return cityData;
     } catch (error) {
         console.log("There was an error with retrieving data from the Location", error);
     }
-};
+}
+
+/* Function to GET Web API Weather Data*/
+export const getWeather = async (cityLat, cityLong, country) => {
+    const req = await fetch(weatherApiUrl + "/" + weatherAPI + "/" + cityLat + "," + cityLong + "," + "?exclude=minutely,hourly,daily,flags");
+    try {
+        const weatherData = await req.json();
+        return weatherData;
+    } catch (error) {
+        console.log("There was an error with retrieving data from the Weather, error");
+    }
+}
 
 /* Function to POST data */
 const postData = async (url = '', data = {}) => {
@@ -111,6 +126,8 @@ const getRemainingDays = () => {
 const updateUI = async () => {
     result.classList.remove("hidden");
     city.innerHTML = goingTo.value;
+    date.innerHTML = depDate.value
     remainingDays.innerHTML = getRemainingDays();
     tripLength.innerHTML = getLengthOfTrip();
+    weather.innerHTML = getWeather(cityLat, cityLong, country);
 }
