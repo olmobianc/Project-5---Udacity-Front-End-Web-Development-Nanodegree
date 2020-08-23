@@ -16,7 +16,8 @@ const weather = document.getElementById("temp");
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const username = "travelling";
 // Personal API Key for WeatherBit
-const weatherApiUrl = "https://api.weatherbit.io/v2.0/current?";
+const weatherApiUrlDaily = "https://api.weatherbit.io/v2.0/current?";
+const weatherApiUrl = "https://api.weatherbit.io/v2.0/forecast/daily?";
 const weatherAPIKey = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
 // Personal API Key for Pixabay
 
@@ -53,7 +54,6 @@ export function addTrip(e) {
             { newDestination, departureDate, endingDate, temp: weatherData.data[0].app_temp }); //stuff I want to Post
             return userData;
         }).then((userData) => {
-            console.log("esisto");
             updateUI(userData);
         });
 }
@@ -72,12 +72,25 @@ export const getLocation = async (geoNamesURL, newDestination, username) => {
 
 /* Function to GET Web API Weather Data */
 export const getWeather = async (cityLat, cityLong) => {
-    const res = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
-    try {
-        const weatherData = await res.json();
-        return weatherData;
-    } catch (error) {
-        console.log("There was an error with retrieving data from the Weather, error");
+    const remainingDaysCheck = getRemainingDays();
+    console.log(remainingDaysCheck);
+    if( remainingDaysCheck < 7 ) {
+        const res = await fetch(`${weatherApiUrlDaily}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
+        try {
+            const weatherData = await res.json();
+            return weatherData;
+        } catch (error) {
+            console.log("There was an error with retrieving data from the Weather, error");
+        }
+    }
+    else {
+        const res = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
+        try {
+            const weatherData = await res.json();
+            return weatherData;
+        } catch (error) {
+            console.log("There was an error with retrieving data from the Weather, error");
+        }
     }
 }
 
