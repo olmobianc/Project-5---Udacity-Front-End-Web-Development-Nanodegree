@@ -28,10 +28,7 @@ app.use(express.static('dist'));
 const port = 8000;
 const server = app.listen(port, listening);
 
-function listening() {
-    console.log("Server is running..");
-    console.log(`running on port ${port}`);
-}
+listening();
 
 //GET route
 app.get('/', function (req, res) {
