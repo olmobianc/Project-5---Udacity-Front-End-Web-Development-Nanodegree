@@ -1,3 +1,5 @@
+import { listening } from "../client/js/listening"
+
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 
@@ -26,7 +28,7 @@ app.use(express.static('dist'));
 const port = 8000;
 const server = app.listen(port, listening);
 
-export function listening() {
+function listening() {
     console.log("Server is running..");
     console.log(`running on port ${port}`);
 }
