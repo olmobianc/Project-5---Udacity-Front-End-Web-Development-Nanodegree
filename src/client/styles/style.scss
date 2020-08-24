@@ -117,6 +117,20 @@ body{
     color: slategray;
 }
 
+.result-grid-container {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: minmax(30px, auto);
+    grid-gap: 30px;
+    grid-template-areas:
+    "lt"
+    "rt";
+}
+
+#image-container {
+    grid-area: rt;
+}
+
 /*FOOTER*/
 #footer-box {
     background: #444;
