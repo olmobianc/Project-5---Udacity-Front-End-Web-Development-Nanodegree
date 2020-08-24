@@ -120,7 +120,7 @@ body{
 .result-grid-container {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr;
-    grid-template-rows: minmax(30px, auto);
+    grid-template-rows: auto;
     grid-gap: 30px;
     grid-template-areas:
     "lt"
@@ -128,7 +128,11 @@ body{
 }
 
 #image-container {
-    grid-area: rt;
+    margin-top: 20px;
+}
+
+#image {
+    width: 100%;
 }
 
 /*FOOTER*/

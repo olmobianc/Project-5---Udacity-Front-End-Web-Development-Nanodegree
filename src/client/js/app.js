@@ -12,6 +12,7 @@ const tripLength = document.getElementById("trip-duration");
 const city = document.getElementById("city");
 const date = document.getElementById("date");
 const weather = document.getElementById("temp");
+const imageLink = document.getElementById("image");
 // Personal Data for Geonames
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const username = "travelling";
@@ -20,8 +21,8 @@ const weatherApiUrlDaily = "https://api.weatherbit.io/v2.0/current?";
 const weatherApiUrl = "https://api.weatherbit.io/v2.0/forecast/daily?";
 const weatherAPIKey = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
 // Personal API Key for Pixabay
-
-
+const pixabayApiUrl = "https://pixabay.com/api/?key=";
+const pixabayAPIKey = "18023770-1686678485031f56a56844441";
 
 // Event listener to add function to existing HTML DOM element
 addTripButton.addEventListener('click', addTrip);
@@ -87,7 +88,7 @@ export const getWeather = async (cityLat, cityLong) => {
         const res = await fetch(`${weatherApiUrl}&lat=${cityLat}&lon=${cityLong}&key=${weatherAPIKey}`)
         try {
             const weatherData = await res.json();
-            return weatherData.data[0].temp;
+            return weatherData.data[0].temp; 
         } catch (error) {
             console.log("There was an error with retrieving data from the Weather, error");
         }
@@ -136,15 +137,20 @@ const getRemainingDays = () => {
     return durationInDays;
 }
 
-/* Function to dinamically update UI */
+/* Function to dinamically update UI while fetching the image of the desired Location*/
 const updateUI = async (userData) => {
+    const res = await fetch(pixabayApiUrl + pixabayAPIKey + "&q=" + userData.city + "+city&image_type=photo");
     try {
         result.classList.remove("hidden");
+        const image = await res.json();
+
         city.innerHTML = userData.city;
         date.innerHTML = userData.startDate;
         remainingDays.innerHTML = getRemainingDays();
         tripLength.innerHTML = getLengthOfTrip();
         weather.innerHTML = userData.temp;
+        imageLink.setAttribute("src", image.hits[0].webformatURL);
+
     }
     catch {
         console.log("error", error);
