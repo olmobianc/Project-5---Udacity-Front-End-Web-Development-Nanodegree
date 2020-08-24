@@ -26,7 +26,7 @@ app.use(express.static('dist'));
 const port = 8000;
 const server = app.listen(port, listening);
 
-function listening() {
+export function listening() {
     console.log("Server is running..");
     console.log(`running on port ${port}`);
 }
@@ -46,4 +46,3 @@ function addData(request, response) {
     projectData.temp = request.body.temp;
     response.send(projectData);
 }
-  
