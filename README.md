@@ -6,15 +6,16 @@ To get the project up and running I followed these steps:
 
 - got my basic project setup and functioning in Visual Studio Code (HTML, installed SASS, wrote styles and set up a local server)
 - installed npm packages
-- set up server for app to run on localhost: 8081
+- set up server for app to run on localhost: 8080
 - installed webpack and webpack cli
 - added babel
 - installed html webpack plugin
 - installed clean webpack plugin
 - installed webpack dev server
 - installed sass loaders: style-loader node-sass css-loader sass-loader
-- set up the MeaningCloud API
-- signed up for an API key
+- set up the Geonames API
+- set up the Weatherbit API
+- set up the Pixabay API
 - set up async requests to fetch destination image and weather, based on user input, obtained from when the form is submitted by the user
 - set up service workers
 - refactored code, installed plugins to minify CSS
