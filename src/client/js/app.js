@@ -24,8 +24,10 @@ const weatherAPIKey = "7468f7e0d79a4cf5ab5f70d3faf3b1ed";
 const pixabayApiUrl = "https://pixabay.com/api/?key=";
 const pixabayAPIKey = "18023770-1686678485031f56a56844441";
 
-// Event listener to add function to existing HTML DOM element
-addTripButton.addEventListener('click', addTrip);
+document.addEventListener('DOMContentLoaded', _ => {
+    // Event listener to add function to existing HTML DOM element
+    addTripButton.addEventListener('click', addTrip);
+});
 
 /* Function called by event listener to Add a Trip */
 export function addTrip(e) {
