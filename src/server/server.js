@@ -1,4 +1,4 @@
-import { listening } from "../client/js/listening"
+const listening = require("../client/js/listening");
 
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
@@ -26,9 +26,9 @@ app.use(express.static('dist'));
 
 // Setup Server
 const port = 8000;
-const server = app.listen(port, listening);
-
-listening();
+const server = app.listen(port, function(){
+    listening(port);
+})
 
 //GET route
 app.get('/', function (req, res) {
