@@ -74,6 +74,9 @@ body{
     padding: 5px 15px;
     cursor: pointer;
 }
+#button-trip:hover {
+    opacity: 70%;
+}
 
 /*RESULT BOX*/
 .hidden {
@@ -100,6 +103,10 @@ body{
     padding: 5px 15px;
     cursor: pointer;
     text-decoration: none;
+}
+
+.button-print:hover {
+    opacity: 70%;
 }
 
 .button-delete {
