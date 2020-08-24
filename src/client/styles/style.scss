@@ -10,7 +10,8 @@ body{
 
 .inline {
     display: inline-block;
-    padding: 10px;
+    padding: 20px;
+    margin: 0 30px;
 }
 
 .no-dec {
@@ -199,6 +200,7 @@ body{
         float: none;
         margin: 5px 0 0 25px;
         padding-bottom: 10px;
+        text-align: center;
     }
     .no-link {
         font-size: 14px;
@@ -211,5 +213,26 @@ body{
     }
     input {
         width: 100%;
+    }
+    #button-trip {
+        width: 100%;
+    }
+    .result-grid-container {
+        display: block;
+    }
+    #image-container {
+        margin-top: 35px;
+    }
+    #result-box {
+        padding: 0 10px 30px;
+    }
+    .button-print {
+        display: block;
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+    .button-delete {
+        display: block;
+        text-align: center;
     }
 }
