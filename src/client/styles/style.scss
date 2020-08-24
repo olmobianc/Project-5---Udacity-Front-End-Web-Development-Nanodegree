@@ -10,8 +10,7 @@ body{
 
 .inline {
     display: inline-block;
-    padding: 20px;
-    margin: 0 30px;
+    padding: 10px;
 }
 
 .no-dec {
@@ -173,4 +172,44 @@ body{
     background: #282828;
     margin: 0;
     padding: 15px;
+}
+
+/*MOBILE*/
+@media(max-width:767px) {
+    .social-element {
+        padding: 10px 5px 30px;
+    }
+    .social-list {
+        padding: 0;
+    }
+    .explanation {
+        padding: 20px;
+    }
+    .inline {
+        padding: 0;
+        display: block;
+    }
+    .small-reduce {
+        font-size: 16px;
+        text-align: center;
+        margin: 0;
+        padding-top: 10px;
+    }
+    .no-dec {
+        float: none;
+        margin: 5px 0 0 25px;
+        padding-bottom: 10px;
+    }
+    .no-link {
+        font-size: 14px;
+    }
+    .paragraph {
+        margin-top: 0;
+    }
+    .container {
+        display: block;
+    }
+    input {
+        width: 100%;
+    }
 }
