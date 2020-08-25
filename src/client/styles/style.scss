@@ -109,17 +109,6 @@ body{
     background: cadetblue;
 }
 
-.button-delete {
-    border-radius: 20px;
-    background-color: tomato;
-    color: #fff;
-    font-size: 13px;
-    border: none;
-    padding: 5px 15px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
 .text-result {
     color: slategray;
 }
@@ -236,10 +225,6 @@ body{
     .button-print {
         display: block;
         margin: 0 0 10px 0;
-        text-align: center;
-    }
-    .button-delete {
-        display: block;
         text-align: center;
     }
 }
