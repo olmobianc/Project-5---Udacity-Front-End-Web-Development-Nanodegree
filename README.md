@@ -20,11 +20,6 @@ To get the project up and running I followed these steps:
 - set up service workers
 - refactored code, installed plugins to minify CSS
 
-## !!For reviewer!!
-I added two festures from the Extend your Project/Ways:
-- Add end date and display length of trip.
-- Allow user to Print their trip and/or export to PDF with the print button
-
 ## Dependencies
 * HTML
 * CSS
